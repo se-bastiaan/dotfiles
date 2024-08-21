@@ -1,0 +1,8 @@
+colorscheme spacegray
+syntax enable		" enable syntax processing
+set tabstop=4		" number of visual spaces per TAB
+set expandtab		" tabs are spaces
+set number			" show line number
+set showcmd			" show command in bottom bar
+set incsearch		" search as characters are entered
+set hlsearch		" highlight matches

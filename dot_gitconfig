@@ -1,0 +1,28 @@
+[user]
+	name = Sébastiaan
+	email = se_bastiaan@outlook.com
+	signingkey = EE55B2F2
+[commit]
+	gpgsign = true
+[core]
+	excludesfile = /Users/sebastiaan/.gitignore_global
+[alias]
+	amend = commit --amend
+	pushf = push --force-with-lease
+	pushaf = "!git amend --no-edit && git pushf"
+	revert = checkout --
+	unstage = reset HEAD --
+	branch-name = "!git rev-parse --abbrev-ref HEAD"
+	pullsr = "!git stash && git pullr && git stash pop"
+	pullr = "!git pull --rebase origin $(git branch-name)"
+	pullm = "!git pull --rebase origin master"
+	pub = "!git push -u origin $(git branch-name)"
+	unpub = "!git push origin :$(git branch-name)"
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
+	tree = "!git log --graph --pretty=oneline --abbrev-commit"
+	vdiff = "!f() { git tree --no-merges --no-decorate \"$1\"..origin/master; }; f"
+[pull]
+	rebase = true
+[init]
+	defaultBranch = main

@@ -1,0 +1,72 @@
+# Path to your oh-my-zsh installation.
+export ZSH=~/.oh-my-zsh
+
+ZSH_THEME="dracula-pro"
+ENABLE_CORRECTION="true"
+COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+    git
+    virtualenv
+    pip
+    python
+    pyenv
+    docker
+    poetry
+    brew
+    z
+)
+
+# User configuration
+
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+zstyle :omz:plugins:keychain agents gpg,ssh
+fpath+=~/.zfunc
+autoload -Uz compinit && compinit
+
+
+source $ZSH/oh-my-zsh.sh
+
+# ssh
+export SSH_KEY_PATH="~/.ssh/id_ed25519"
+
+alias dev='cd ~/Development'
+alias vsc='open -a "Visual Studio Code"'
+alias code='open -a "Visual Studio Code"'
+alias zshconfig="code ~/.zshrc"
+alias ohmyzsh="code ~/.oh-my-zsh"
+alias cleangitbranches='git branch --merged | grep -v "\*" | grep -v master | grep -v develop | xargs -n 1 git branch -d'
+alias nproc="sysctl -n hw.logicalcpu"
+alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+
+export AWS_SHARED_CREDENTIALS_FILE=/Users/sebastiaan/.aws/credentials
+
+export PATH="/usr/local/bin:$PATH"
+export PATH="/Users/sebastiaan/.local/bin:$PATH"
+export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
+export PATH="/Users/sebastiaan/.cargo/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion# tabtab source for slss package
+
+
+# bun completions
+[ -s "/Users/sebastiaan/.bun/_bun" ] && source "/Users/sebastiaan/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
