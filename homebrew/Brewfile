@@ -1,0 +1,67 @@
+# Taps
+tap 'homebrew/bundle'
+
+# Binaries
+brew 'awscli'
+brew 'coreutils'
+brew 'gh'
+brew 'git'
+brew 'grep'
+brew 'httpie'
+brew 'jq'
+brew 'mas' # Mac App Store manager
+brew 'pkg-config'
+
+# Terminal tooling
+brew 'lsd'
+brew 'neovim'
+brew 'zsh-autosuggestions'
+brew 'zsh-you-should-use'
+brew 'zsh-syntax-highlighting'
+brew 'fzf'
+brew 'zoxide'
+brew 'starship'
+
+# Pyenv & build dependencies
+brew 'pyenv'
+brew 'openssl'
+brew 'readline'
+brew 'sqlite3'
+brew 'xz'
+brew 'zlib'
+brew 'tcl-tk'
+
+# Apps
+cask '1password'
+cask 'beekeeper-studio'
+cask 'discord'
+cask 'firefox'
+cask 'github'
+cask 'httpie'
+cask 'instantview'
+cask 'jetbrains-toolbox'
+cask 'nextcloud'
+cask 'pycharm'
+cask 'rancher'
+cask 'rectangle'
+cask 'signal'
+cask 'spotify'
+cask 'the-unarchiver'
+cask 'visual-studio-code'
+cask 'whatsapp'
+
+brew '1password-cli'
+
+# Quicklook
+cask 'qlmarkdown'
+cask 'quicklook-json'
+
+# Fonts
+cask 'font-lato'
+cask 'font-open-sans'
+cask 'font-jetbrains-mono-nerd-font'
+
+# Mac App Store
+mas 'Amphetamine', id: 93_984_704
+mas 'Outlook', id: 985_367_838
+mas 'WhatsApp', id: 310_633_997

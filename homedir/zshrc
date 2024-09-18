@@ -1,0 +1,46 @@
+alias grep='grep --color=auto'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ls='lsd'
+alias l='ls -l'
+alias la='ls -a'
+alias ll='ls -la'
+alias lt='ls --tree'
+alias ~='cd ~'
+
+alias zrc="code ~/.zshrc"
+alias zpr="code ~/.zprofile"
+
+autoload -Uz up-line-or-beginning-search
+autoload -Uz down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search
+
+# Plugins
+
+# zsh-autosuggestions
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# zsh-syntax-highlighting
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# zsh-you-should-use
+source /opt/homebrew/share/zsh-you-should-use/you-should-use.plugin.zsh
+
+[ -s "/Users/sebastiaan.versteeg/.bun/_bun" ] && source "/Users/sebastiaan.versteeg/.bun/_bun"
+
+eval "$(fzf --zsh)" # fzf key bindings and fuzzy completion
+eval "$(zoxide init zsh)" # location jumping tool
+
+# completion
+fpath+=~/.zfunc
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
+
+eval "$(starship init zsh)" # Starship.rs
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -1,0 +1,28 @@
+export LANG=en_US.UTF-8
+export EDITOR="nvim"
+export VISUAL="$EDITOR"
+
+export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
+export PATH="$PATH:$HOME/.local/bin"
+[[ -d $HOME/.cargo ]] && export PATH="$PATH:$HOME/.cargo/bin"
+
+export STARSHIP_CONFIG="~/.config/starship/starship.toml"
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# History settings
+export HISTFILE=$HOME/.zsh_history
+export HISTFILESIZE=65536  # search this with `grep | sort -u`
+export HISTSIZE=4096
+export SAVEHIST=4096
+export REPORTTIME=60
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FIND_NO_DUPS
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(pyenv init -)"
