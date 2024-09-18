@@ -1,11 +1,11 @@
 [user]
 	name = Sébastiaan
-	email = se_bastiaan@outlook.com
+	email = 1799914+se-bastiaan@users.noreply.github.com
 	signingkey = EE55B2F2
 [commit]
 	gpgsign = true
 [core]
-	excludesfile = /Users/sebastiaan/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [alias]
 	amend = commit --amend
 	pushf = push --force-with-lease
