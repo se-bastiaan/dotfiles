@@ -1,4 +1,4 @@
-#! /bin/zsh
+#!/bin/zsh
 
 # Install Homebrew
 echo "Installing Homebrew"
