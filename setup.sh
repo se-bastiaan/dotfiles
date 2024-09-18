@@ -59,8 +59,8 @@ then
     read -p "Enter name for gitconfig: " gitname
     read -p "Enter email for gitconig: " gitemail
 
-    git config --global user.name gitname
-    git config --global user.email gitemail
+    git config --global user.name ${gitname}
+    git config --global user.email ${gitemail}
 fi
 
 # Install all packages from Brewfile
@@ -140,7 +140,7 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
 then
     echo "Installing Bun"
 
-    curl -sSL https://bun.sh | bash
+    curl -fsSL https://bun.sh/install | bash
 
     echo "Bun installed"
 fi
