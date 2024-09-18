@@ -26,3 +26,14 @@
 	rebase = true
 [init]
 	defaultBranch = main
+[color]
+    ui = true
+    branch = true
+    diff = true
+    interactive = true
+    status = true
+[color "status"]
+    added = green
+    changed = blue
+    deleted = red
+    untracked = yellow
