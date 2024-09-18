@@ -1,5 +1,3 @@
-#!/bin/zsh
-
 # Install Homebrew
 echo "Installing Homebrew"
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -16,16 +14,16 @@ echo "export PATH='/usr/local/bin:$PATH'\n" >> ~/.bashrc
 source ~/.bashrc
 
 # Remove old dot flies
-sudo rm -rf ~/.bashrc > /dev/null 2>&1
-sudo rm -rf ~/.vim > /dev/null 2>&1
-sudo rm -rf ~/.vimrc > /dev/null 2>&1
-sudo rm -rf ~/.zshrc > /dev/null 2>&1
-sudo rm -rf ~/.zprofile > /dev/null 2>&1
-sudo rm -rf ~/.gitconfig > /dev/null 2>&1
-sudo rm -rf ~/.gitignore_global > /dev/null 2>&1
-sudo rm -rf ~/.psqlrc > /dev/null 2>&1
-sudo rm -rf ~/.config > /dev/null 2>&1
-sudo rm -rf ~/Brewfile > /dev/null 2>&1
+rm -rf ~/.bashrc > /dev/null 2>&1
+rm -rf ~/.vim > /dev/null 2>&1
+rm -rf ~/.vimrc > /dev/null 2>&1
+rm -rf ~/.zshrc > /dev/null 2>&1
+rm -rf ~/.zprofile > /dev/null 2>&1
+rm -rf ~/.gitconfig > /dev/null 2>&1
+rm -rf ~/.gitignore_global > /dev/null 2>&1
+rm -rf ~/.psqlrc > /dev/null 2>&1
+rm -rf ~/.config > /dev/null 2>&1
+rm -rf ~/Brewfile > /dev/null 2>&1
 
 echo "Old dotfiles removed"
 
