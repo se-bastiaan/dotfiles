@@ -68,6 +68,10 @@ echo "Starting to install packages from Brewfile"
 brew bundle --file=~/Brewfile
 echo "Brewfile packages installed"
 
+echo "Setting up pinentry for gpg"
+echo "pinentry-program $(which pinentry-mac)" >> ~/.gnupg/gpg-agent.conf
+killall gpg-agent
+
 read -r -p "Do you want to change to install nvm and the latest Node LTS? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
 then

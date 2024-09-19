@@ -1,10 +1,12 @@
 export LANG=en_US.UTF-8
 export EDITOR="nvim"
 export VISUAL="$EDITOR"
+export GPG_TTY=$(tty)
 
 export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
 export PATH="$PATH:$HOME/.local/bin"
 [[ -d $HOME/.cargo ]] && export PATH="$PATH:$HOME/.cargo/bin"
+
 
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
