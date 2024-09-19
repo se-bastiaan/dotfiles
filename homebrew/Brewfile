@@ -11,6 +11,7 @@ brew 'httpie'
 brew 'jq'
 brew 'mas' # Mac App Store manager
 brew 'pkg-config'
+brew 'iterm2'
 
 # Terminal tooling
 brew 'lsd'
@@ -65,3 +66,9 @@ cask 'font-jetbrains-mono-nerd-font'
 mas 'Amphetamine', id: 93_984_704
 mas 'Outlook', id: 985_367_838
 mas 'WhatsApp', id: 310_633_997
+
+# Must have VSCode extensions
+vscode "GitHub.copilot"
+vscode "ms-python.python"
+vscode "dracula-theme.theme-dracula"
+vscode "ZainChen.json"

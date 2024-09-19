@@ -11,6 +11,7 @@ alias ~='cd ~'
 alias zrc="code ~/.zshrc"
 alias zpr="code ~/.zprofile"
 
+# Search in previous command with up/down
 autoload -Uz up-line-or-beginning-search
 autoload -Uz down-line-or-beginning-search
 zle -N up-line-or-beginning-search
@@ -27,8 +28,6 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # zsh-you-should-use
 source /opt/homebrew/share/zsh-you-should-use/you-should-use.plugin.zsh
 
-[ -s "/Users/sebastiaan.versteeg/.bun/_bun" ] && source "/Users/sebastiaan.versteeg/.bun/_bun"
-
 eval "$(fzf --zsh)" # fzf key bindings and fuzzy completion
 eval "$(zoxide init zsh)" # location jumping tool
 
@@ -41,6 +40,3 @@ done
 compinit -C
 
 eval "$(starship init zsh)" # Starship.rs
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

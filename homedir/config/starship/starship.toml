@@ -1,0 +1,40 @@
+palette = "dracula"
+
+[aws]
+style = "bold orange"
+
+[character]
+error_symbol = "[➜](bold red)"
+success_symbol = "[➜](bold green)"
+
+[cmd_duration]
+style = "bold yellow"
+
+[directory]
+style = "bold green"
+
+[git_branch]
+style = "bold pink"
+
+[git_status]
+style = "bold red"
+
+[hostname]
+style = "bold purple"
+
+[username]
+format = "[$user]($style) on "
+style_user = "bold cyan"
+
+[palettes.dracula]
+background = "#22212C"
+current_line = "#454158"
+foreground = "#F8F8F2"
+comment = "#7970A9"
+cyan = "#80FFEA"
+green = "#8AFF80"
+orange = "#FFCA80"
+pink = "#FF80BF"
+purple = "#9580FF"
+red = "#FF9580"
+yellow = "#FFFF80"
