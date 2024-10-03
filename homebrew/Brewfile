@@ -24,6 +24,7 @@ brew 'zsh-syntax-highlighting'
 brew 'fzf'
 brew 'zoxide'
 brew 'starship'
+brew 'adr-tools'
 
 # Pyenv & build dependencies
 brew 'pyenv'
