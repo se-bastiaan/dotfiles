@@ -28,3 +28,4 @@ setopt HIST_FIND_NO_DUPS
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(pyenv init -)"
+eval `keychain --eval --quiet --nogui --quiet --agents ssh,gpg --inherit any id_ed25519 EE55B2F2`
