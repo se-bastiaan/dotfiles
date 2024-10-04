@@ -68,6 +68,12 @@ echo "Starting to install packages from Brewfile"
 brew bundle --file=~/Brewfile
 echo "Brewfile packages installed"
 
+echo "Simlinking Docker CLI plugins"
+mkdir -p ~/.docker/cli-plugins
+ln -sfn $(which docker-compose) ~/.docker/cli-plugins/docker-compose
+ln -sfn $(which docker-buildx) ~/.docker/cli-plugins/docker-buildx
+echo "Docker CLI plugins linked"
+
 echo "Setting up pinentry for gpg"
 echo "pinentry-program $(which pinentry-mac)" >> ~/.gnupg/gpg-agent.conf
 killall gpg-agent

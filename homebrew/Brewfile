@@ -15,6 +15,12 @@ brew 'pkg-config'
 brew 'iterm2'
 brew 'pinentry-mac'
 
+# Containers
+brew 'docker'
+brew 'docker-compose'
+brew 'docker-buildx'
+brew 'colima'
+
 # Terminal tooling
 brew 'lsd'
 brew 'neovim'
