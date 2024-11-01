@@ -35,7 +35,7 @@ rm -rf ~/.zprofile > /dev/null 2>&1
 rm -rf ~/.gitconfig > /dev/null 2>&1
 rm -rf ~/.gitignore_global > /dev/null 2>&1
 rm -rf ~/.psqlrc > /dev/null 2>&1
-rm -rf ~/.config > /dev/null 2>&1
+rm -rf ~/.config/starship/starship.toml > /dev/null 2>&1
 rm -rf ~/Brewfile > /dev/null 2>&1
 
 apps=$(ls homedir)
