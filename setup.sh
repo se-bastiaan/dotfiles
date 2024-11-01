@@ -58,14 +58,12 @@ for app in ${apps[@]}; do
 done
 echo "Stowing complete!"
 
-if [[ $(uname) != "Darwin" ]]; then
-    read -r -p "Do you want install apps using the Caskfile? [y/N] " response
-    if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
-    then
-        echo "Starting to install apps from Caskfile"
-        brew bundle --file=./homebrew/Caskfile
-        echo "Caskfile apps installed"
-    fi
+read -r -p "Do you want install apps using the Caskfile? [y/N] " response
+if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
+then
+    echo "Starting to install apps from Caskfile"
+    brew bundle --file=./homebrew/Caskfile
+    echo "Caskfile apps installed"
 fi
 
 read -r -p "Do you want to set the gitconfig user info? [y/N] " response
