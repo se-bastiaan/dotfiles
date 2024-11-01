@@ -75,7 +75,7 @@ then
     read -p "Enter name for gitconfig: " gitname
     read -p "Enter email for gitconig: " gitemail
 
-    echo "[user]\n\tname = ${gitname}\n\temail = ${gitemail}" > ~/.gitconfig_local
+    echo [user]\n\tname = ${gitname}\n\temail = ${gitemail} > ~/.gitconfig_local
 fi
 
 read -r -p "Do you want to change to install nvm and the latest Node LTS? [y/N] " response
