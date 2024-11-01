@@ -76,6 +76,8 @@ echo "Docker CLI plugins linked"
 
 echo "Setting up pinentry for gpg"
 echo "pinentry-program $(which pinentry-mac)" >> ~/.gnupg/gpg-agent.conf
+echo "default-cache-ttl 84000" >> ~/.gnupg/gpg-agent.conf
+echo "max-cache-ttl 84000" >> ~/.gnupg/gpg-agent.conf
 killall gpg-agent
 
 read -r -p "Do you want to change to install nvm and the latest Node LTS? [y/N] " response
