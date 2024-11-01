@@ -12,3 +12,9 @@ git clone https://github.com/se-bastiaan/dotfiles.git ~/dotfiles
 cd ~/dotfiles/
 bash setup.sh
 ```
+
+If you want to setup SSH:
+
+```
+bash ssh_init.ssh <name>
+```
