@@ -3,10 +3,9 @@ export EDITOR="nvim"
 export VISUAL="$EDITOR"
 export GPG_TTY=$(tty)
 
-export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
-export PATH="$PATH:$HOME/.local/bin"
-[[ -d $HOME/.cargo ]] && export PATH="$PATH:$HOME/.cargo/bin"
-
+test -d /Applications/JetBrains\ Toolbox.app && export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
+test -d $HOME/.local && export PATH="$PATH:$HOME/.local/bin"
+test -d $HOME/.cargo && export PATH="$PATH:$HOME/.cargo/bin"
 
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
@@ -26,6 +25,8 @@ export REPORTTIME=60
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_FIND_NO_DUPS
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+test -d /opt/homebrew && eval "$(/opt/homebrew/bin/brew shellenv)"
+
 eval "$(pyenv init -)"
-eval `keychain --eval --quiet --nogui --quiet --agents ssh,gpg --inherit any id_ed25519 EE55B2F2`

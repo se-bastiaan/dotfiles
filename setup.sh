@@ -5,7 +5,10 @@ if test ! $(which brew); then
     echo "Homebrew not installed"
     echo "Installing Homebrew"
     bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    eval "$(/opt/homebrew/bin/brew shellenv)"
+
+    test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+    test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    test -d /opt/homebrew && eval "$(/opt/homebrew/bin/brew shellenv)"
 else
     echo "Homebrew is already installed"
 fi
@@ -27,6 +30,12 @@ echo "Starting to install packages from Brewfile"
 brew bundle --file=./homebrew/Brewfile
 echo "Brewfile packages installed"
 
+echo "Symlinking Docker CLI plugins"
+mkdir -p ~/.docker/cli-plugins
+ln -sfn $(which docker-compose) ~/.docker/cli-plugins/docker-compose
+ln -sfn $(which docker-buildx) ~/.docker/cli-plugins/docker-buildx
+echo "Docker CLI plugins linked"
+
 rm -rf ~/.bashrc > /dev/null 2>&1
 rm -rf ~/.vim > /dev/null 2>&1
 rm -rf ~/.vimrc > /dev/null 2>&1
@@ -41,16 +50,22 @@ rm -rf ~/Brewfile > /dev/null 2>&1
 apps=$(ls homedir)
 echo "Stowing apps for user: ${whoami}"
 for app in ${apps[@]}; do
+    # If the directory name starts with mac and the OS is not macOS, skip
+    if [[ $app == mac-* && $(uname) != "Darwin" ]]; then
+        continue
+    fi
     stow -v -R -t "${HOME}" -d "homedir" --dotfiles $app 
 done
 echo "Stowing complete!"
 
-read -r -p "Do you want install apps using the Caskfile? [y/N] " response
-if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
-then
-    echo "Starting to install apps from Caskfile"
-    brew bundle --file=./homebrew/Caskfile
-    echo "Caskfile apps installed"
+if [[ $(uname) != "Darwin" ]]; then
+    read -r -p "Do you want install apps using the Caskfile? [y/N] " response
+    if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
+    then
+        echo "Starting to install apps from Caskfile"
+        brew bundle --file=./homebrew/Caskfile
+        echo "Caskfile apps installed"
+    fi
 fi
 
 read -r -p "Do you want to set the gitconfig user info? [y/N] " response
@@ -62,18 +77,6 @@ then
 
     echo "[user]\n\tname = ${gitname}\n\temail = ${gitemail}" > ~/.gitconfig_local
 fi
-
-echo "Symlinking Docker CLI plugins"
-mkdir -p ~/.docker/cli-plugins
-ln -sfn $(which docker-compose) ~/.docker/cli-plugins/docker-compose
-ln -sfn $(which docker-buildx) ~/.docker/cli-plugins/docker-buildx
-echo "Docker CLI plugins linked"
-
-echo "Setting up pinentry for gpg"
-echo "pinentry-program $(which pinentry-mac)" >> ~/.gnupg/gpg-agent.conf
-echo "default-cache-ttl 84000" >> ~/.gnupg/gpg-agent.conf
-echo "max-cache-ttl 84000" >> ~/.gnupg/gpg-agent.conf
-killall gpg-agent
 
 read -r -p "Do you want to change to install nvm and the latest Node LTS? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]

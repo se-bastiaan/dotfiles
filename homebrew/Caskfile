@@ -17,6 +17,7 @@ cask 'the-unarchiver'
 cask 'visual-studio-code'
 cask 'whatsapp'
 cask 'gpg-suite-no-mail'
+cask 'iterm2'
 
 brew '1password-cli'
 

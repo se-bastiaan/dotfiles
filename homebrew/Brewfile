@@ -12,7 +12,6 @@ brew 'httpie'
 brew 'jq'
 brew 'mas' # Mac App Store manager
 brew 'pkg-config'
-brew 'iterm2'
 brew 'pinentry-mac'
 brew 'keychain'
 brew 'stow'
