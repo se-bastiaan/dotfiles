@@ -15,6 +15,7 @@ brew 'pkg-config'
 brew 'iterm2'
 brew 'pinentry-mac'
 brew 'keychain'
+brew 'stow'
 
 # Containers
 brew 'docker'
@@ -32,6 +33,7 @@ brew 'fzf'
 brew 'zoxide'
 brew 'starship'
 brew 'adr-tools'
+brew 'tmux'
 
 # Pyenv & build dependencies
 brew 'pyenv'
@@ -41,44 +43,3 @@ brew 'sqlite3'
 brew 'xz'
 brew 'zlib'
 brew 'tcl-tk'
-
-# Apps
-cask '1password'
-cask 'beekeeper-studio'
-cask 'discord'
-cask 'firefox'
-cask 'github'
-cask 'httpie'
-cask 'instantview'
-cask 'jetbrains-toolbox'
-cask 'nextcloud'
-cask 'pycharm'
-cask 'rancher'
-cask 'rectangle'
-cask 'signal'
-cask 'spotify'
-cask 'the-unarchiver'
-cask 'visual-studio-code'
-cask 'whatsapp'
-
-brew '1password-cli'
-
-# Quicklook
-cask 'qlmarkdown'
-cask 'quicklook-json'
-
-# Fonts
-cask 'font-lato'
-cask 'font-open-sans'
-cask 'font-jetbrains-mono-nerd-font'
-
-# Mac App Store
-mas 'Amphetamine', id: 93_984_704
-mas 'Outlook', id: 985_367_838
-mas 'WhatsApp', id: 310_633_997
-
-# Must have VSCode extensions
-vscode "GitHub.copilot"
-vscode "ms-python.python"
-vscode "dracula-theme.theme-dracula"
-vscode "ZainChen.json"

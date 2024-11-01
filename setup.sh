@@ -1,19 +1,32 @@
-# Install Homebrew
-echo "Installing Homebrew"
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-eval "$(/opt/homebrew/bin/brew shellenv)"
+#!/usr/bin/env bash
+
+# Check if Homebrew is installed
+if test ! $(which brew); then
+    echo "Homebrew not installed"
+    echo "Installing Homebrew"
+    bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+    echo "Homebrew is already installed"
+fi
+
+echo "Updating Homebrew"
 brew doctor
 brew update
 echo "Homebrew installed"
 
-# Install Xcode Command Line Tools
+# Install Xcode Command Line Tools, if not installed
 xcode-select --install
 
 # So we use all of the packages we are about to install
 echo "export PATH='/usr/local/bin:$PATH'\n" >> ~/.bashrc
 source ~/.bashrc
 
-# Remove old dot flies
+# Install all packages from Brewfile
+echo "Starting to install packages from Brewfile"
+brew bundle --file=./homebrew/Brewfile
+echo "Brewfile packages installed"
+
 rm -rf ~/.bashrc > /dev/null 2>&1
 rm -rf ~/.vim > /dev/null 2>&1
 rm -rf ~/.vimrc > /dev/null 2>&1
@@ -25,50 +38,32 @@ rm -rf ~/.psqlrc > /dev/null 2>&1
 rm -rf ~/.config > /dev/null 2>&1
 rm -rf ~/Brewfile > /dev/null 2>&1
 
-echo "Old dotfiles removed"
+apps=$(ls homedir)
+echo "Stowing apps for user: ${whoami}"
+for app in ${apps[@]}; do
+    stow -v -R -t "${HOME}" -d "homedir" --dotfiles $app 
+done
+echo "Stowing complete!"
 
-# Create symlinks
-SYMLINKS=()
-ln -sf $(pwd)/homedir/vim ~/.vim
-SYMLINKS+=('.vim')
-ln -sf $(pwd)/homedir/vimrc ~/.vimrc
-SYMLINKS+=('.vimrc')
-ln -sf $(pwd)/homedir/bashrc ~/.bashrc
-SYMLINKS+=('.bashrc')
-ln -sf $(pwd)/homedir/zshrc ~/.zshrc
-SYMLINKS+=('.zshrc')
-ln -sf $(pwd)/homedir/zprofile ~/.zprofile
-SYMLINKS+=('.zprofile')
-ln -sf $(pwd)/homedir/config ~/.config
-SYMLINKS+=('.config')
-ln -s $(pwd)/homedir/gitconfig ~/.gitconfig
-SYMLINKS+=('.gitconfig')
-ln -s $(pwd)/homedir/gitignore_global ~/.gitignore_global
-SYMLINKS+=('.gitignore_global')
-ln -s $(pwd)/homedir/psqlrc ~/.psqlrc
-SYMLINKS+=('.psqlrc')
-ln -sf $(pwd)/homebrew/Brewfile ~/Brewfile
-SYMLINKS+=('Brewfile')
+read -r -p "Do you want install apps using the Caskfile? [y/N] " response
+if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
+then
+    echo "Starting to install apps from Caskfile"
+    brew bundle --file=./homebrew/Caskfile
+    echo "Caskfile apps installed"
+fi
 
-echo ${SYMLINKS[@]} "symlinks created"
-
-read -r -p "Do you want to change the gitconfig user info? [y/N] " response
+read -r -p "Do you want to set the gitconfig user info? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
 then
     # Interactivily change git config
     read -p "Enter name for gitconfig: " gitname
     read -p "Enter email for gitconig: " gitemail
 
-    git config --global user.name ${gitname}
-    git config --global user.email ${gitemail}
+    echo "[user]\n\tname = ${gitname}\n\temail = ${gitemail}" > ~/.gitconfig_local
 fi
 
-# Install all packages from Brewfile
-echo "Starting to install packages from Brewfile"
-brew bundle --file=~/Brewfile
-echo "Brewfile packages installed"
-
-echo "Simlinking Docker CLI plugins"
+echo "Symlinking Docker CLI plugins"
 mkdir -p ~/.docker/cli-plugins
 ln -sfn $(which docker-compose) ~/.docker/cli-plugins/docker-compose
 ln -sfn $(which docker-buildx) ~/.docker/cli-plugins/docker-buildx

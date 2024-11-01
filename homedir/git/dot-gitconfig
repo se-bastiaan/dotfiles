@@ -1,9 +1,9 @@
 [user]
-	name = Sébastiaan
-	email = 1799914+se-bastiaan@users.noreply.github.com
 	signingkey = EE55B2F2
+[include]
+	path = ~/.gitconfig_local
 [commit]
-	gpgsign = true
+	gpgsign = false
 [core]
 	excludesfile = ~/.gitignore_global
 [alias]
