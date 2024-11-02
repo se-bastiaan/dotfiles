@@ -1,0 +1,7 @@
+cmd + alt + ctrl - t : osascript -e 'tell application "iTerm" to activate'
+
+f14 [
+ "teams" : skhd -k "cmd + shift - m"
+ "discord" : skhd -k "cmd + shift - m"
+ * ~
+]

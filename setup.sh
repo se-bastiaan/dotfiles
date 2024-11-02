@@ -18,6 +18,10 @@ brew doctor
 brew update
 echo "Homebrew installed"
 
+if test $(which skhd); then
+    skhd --start-service
+fi
+
 # Install Xcode Command Line Tools, if not installed
 xcode-select --install
 

@@ -15,6 +15,7 @@ brew 'pkg-config'
 brew 'pinentry-mac'
 brew 'keychain'
 brew 'stow'
+brew 'koekeishiya/formulae/skhd'
 
 # Containers
 brew 'docker'
