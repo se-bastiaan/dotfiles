@@ -40,3 +40,7 @@ done
 compinit -C
 
 eval "$(starship init zsh)" # Starship.rs
+
+case $- in *i*)
+  if [ -z "$TMUX" ]; then exec tmux; fi;;
+esac
