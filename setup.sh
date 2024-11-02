@@ -1,5 +1,16 @@
 #!/usr/bin/env bash
 
+clone_or_pull(){
+  repo_url=$1
+  directory=$2
+
+  if [ ! -d "$directory" ]; then
+    git clone "$repo_url" "$directory" || exit 1
+  else
+    cd "$directory" && git pull "$repo_url" || exit 1
+  fi
+}
+
 # Check if Homebrew is installed
 if test ! $(which brew); then
     echo "Homebrew not installed"
@@ -18,12 +29,24 @@ brew doctor
 brew update
 echo "Homebrew installed"
 
-if test $(which skhd); then
-    skhd --start-service
-fi
+if [[ $(uname) == "Darwin" ]]; then
+    # Install Xcode Command Line Tools, if not installed
+    xcode-select --install
 
-# Install Xcode Command Line Tools, if not installed
-xcode-select --install
+    if test $(which skhd); then
+        skhd --start-service
+    fi
+
+
+    # Specify the preferences directory
+    defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/.config/iterm2"
+
+    # Tell iTerm2 to use the custom preferences in the directory
+    defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+
+    # Tell iTerm2 to save preferences automatically
+    defaults write com.googlecode.iterm2.plist "NoSyncNeverRemindPrefsChangesLostForFile_selection" -int 2
+fi
 
 # So we use all of the packages we are about to install
 echo "export PATH='/usr/local/bin:$PATH'\n" >> ~/.bashrc
@@ -39,6 +62,10 @@ mkdir -p ~/.docker/cli-plugins
 ln -sfn $(which docker-compose) ~/.docker/cli-plugins/docker-compose
 ln -sfn $(which docker-buildx) ~/.docker/cli-plugins/docker-buildx
 echo "Docker CLI plugins linked"
+
+# Install TPM
+echo "Installing Tmux Plugin Manager"
+clone_or_pull https://github.com/tmux-plugins/tpm.git ~/.config/tmux/plugins/tpm
 
 rm -rf ~/.bashrc > /dev/null 2>&1
 rm -rf ~/.vim > /dev/null 2>&1
