@@ -65,7 +65,7 @@ echo "Docker CLI plugins linked"
 
 # Install TPM
 echo "Installing Tmux Plugin Manager"
-clone_or_pull https://github.com/tmux-plugins/tpm.git ~/.config/tmux/plugins/tpm
+clone_or_pull https://github.com/tmux-plugins/tpm.git $HOME/.tmux/plugins/tpm
 
 rm -rf ~/.bashrc > /dev/null 2>&1
 rm -rf ~/.vim > /dev/null 2>&1

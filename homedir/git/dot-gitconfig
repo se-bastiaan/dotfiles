@@ -22,6 +22,8 @@
 	alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
 	tree = "!git log --graph --pretty=oneline --abbrev-commit"
 	vdiff = "!f() { git tree --no-merges --no-decorate \"$1\"..origin/master; }; f"
+	wip = !git add -A && git commit -mWIP --no-verify
+	unwip = !git reset --soft $(git log -1 --format=format:\"%H\" --invert-grep --grep \"^WIP$\")
 [pull]
 	rebase = true
 [init]

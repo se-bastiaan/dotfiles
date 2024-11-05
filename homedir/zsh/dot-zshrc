@@ -19,8 +19,19 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
 
-# Plugins
+eval "$(fzf --zsh)" # fzf key bindings and fuzzy completion
+eval "$(zoxide init zsh)" # location jumping tool
 
+# completion
+fpath+=~/.zfunc
+fpath=($(brew --prefix)/share/zsh-completions/ $fpath)
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
+
+# Plugins
 # zsh-autosuggestions
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # zsh-syntax-highlighting
@@ -28,19 +39,8 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # zsh-you-should-use
 source $(brew --prefix)/share/zsh-you-should-use/you-should-use.plugin.zsh
 
-eval "$(fzf --zsh)" # fzf key bindings and fuzzy completion
-eval "$(zoxide init zsh)" # location jumping tool
-
-# completion
-fpath+=~/.zfunc
-autoload -Uz compinit
-for dump in ~/.zcompdump(N.mh+24); do
-  compinit
-done
-compinit -C
-
 eval "$(starship init zsh)" # Starship.rs
 
 case $- in *i*)
-  if [ -z "$TMUX" ]; then exec tmux; fi;;
+  if [ -z "$TMUX" -a -z "$DISABLE_TMUX" ]; then exec tmux; fi;;
 esac
