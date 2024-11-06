@@ -37,7 +37,8 @@ setopt HIST_FIND_NO_DUPS
 zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no
+zstyle ':completion:*' menu select
+zstyle ':completion:*' complete-options true
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'lsd $realpath'
 

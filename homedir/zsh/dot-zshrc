@@ -33,15 +33,29 @@ fi
 
 source "${ZINIT_HOME}/zinit.zsh"
 
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light MichaelAquilina/zsh-you-should-use
-zinit light Aloxaf/fzf-tab
+plugins=(
+  "zsh-users/zsh-syntax-highlighting"
+  "zsh-users/zsh-completions"
+  "zsh-users/zsh-autosuggestions"
+  "MichaelAquilina/zsh-you-should-use"
+  "Aloxaf/fzf-tab"
+)
 
-zinit snippet OMZP::sudo
-zinit snippet OMZP::tmux
-zinit snippet OMZP::profiles
+snippets=(
+  "OMZP::sudo"
+  "OMZP::tmux"
+  "OMZP::profiles"
+)
+
+for plugin in "${plugins[@]}"; do
+  zinit ice wait lucid
+  zinit light "$plugin"
+done
+
+for snippet in "${snippets[@]}"; do
+  zinit ice wait lucid
+  zinit snippet "$snippet"
+done
 
 # Completion loading
 fpath+=~/.zfunc
