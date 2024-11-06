@@ -22,24 +22,38 @@ bindkey "^[[B" down-line-or-beginning-search
 eval "$(fzf --zsh)" # fzf key bindings and fuzzy completion
 eval "$(zoxide init zsh)" # location jumping tool
 
-# completion
+ZINIT_HOME="$HOME/.local/share/zinit/zinit.git"
+ZSH_CUSTOM=~/.zsh/custom
+
+# Download Zinit, if it's not there yet
+if [ ! -d "$ZINIT_HOME" ]; then
+   mkdir -p "$(dirname $ZINIT_HOME)"
+   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+source "${ZINIT_HOME}/zinit.zsh"
+
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light MichaelAquilina/zsh-you-should-use
+zinit light Aloxaf/fzf-tab
+
+zinit snippet OMZP::sudo
+zinit snippet OMZP::tmux
+zinit snippet OMZP::profiles
+
+# Completion loading
 fpath+=~/.zfunc
-fpath=($(brew --prefix)/share/zsh-completions/ $fpath)
 autoload -Uz compinit
 for dump in ~/.zcompdump(N.mh+24); do
   compinit
 done
 compinit -C
 
-# Plugins
-# zsh-autosuggestions
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-# zsh-syntax-highlighting
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# zsh-you-should-use
-source $(brew --prefix)/share/zsh-you-should-use/you-should-use.plugin.zsh
-
-eval "$(starship init zsh)" # Starship.rs
+eval "$(starship init zsh)"
+eval "$(fzf --zsh)"
+eval "$(zoxide init zsh)"
 
 case $- in *i*)
   if [ -z "$TMUX" -a -z "$DISABLE_TMUX" ]; then exec tmux; fi;;

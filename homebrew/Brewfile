@@ -26,6 +26,7 @@ brew 'colima'
 # Terminal tooling
 brew 'lsd'
 brew 'neovim'
+brew 'zinit'
 brew 'zsh-autosuggestions'
 brew 'zsh-you-should-use'
 brew 'zsh-syntax-highlighting'
