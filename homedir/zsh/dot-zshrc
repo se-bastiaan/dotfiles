@@ -38,11 +38,20 @@ plugins=(
   "Aloxaf/fzf-tab"
 )
 
+# Add fzf-tab if fzf is installed
+if [ -n "$(command -v fzf)" ]; then
+  plugins+=("Aloxaf/fzf-tab")
+fi
+
 snippets=(
   "OMZP::sudo"
-  "OMZP::tmux"
   "OMZP::profiles"
 )
+
+# Add tmux if it is installed
+if [ -n "$(command -v tmux)" ]; then
+  snippets+=("OMZP::tmux")
+fi
 
 for plugin in "${plugins[@]}"; do
   zinit ice wait lucid
