@@ -67,5 +67,7 @@ command -v fzf && eval "$(fzf --zsh)"
 command -v zoxide && eval "$(zoxide init zsh)"
 
 case $- in *i*)
-  if [ -z "$TMUX" -a -z "$DISABLE_TMUX" ]; then exec tmux; fi;;
+  if [ -z "$TMUX" ] && [ -z "$DISABLE_TMUX" ] && [ -n "$(command -v tmux)" ]; then
+    exec tmux
+  fi
 esac
