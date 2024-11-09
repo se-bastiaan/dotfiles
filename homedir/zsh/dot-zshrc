@@ -65,9 +65,9 @@ for dump in ~/.zcompdump(N.mh+24); do
 done
 compinit -C
 
-eval "$(starship init zsh)"
-eval "$(fzf --zsh)"
-eval "$(zoxide init zsh)"
+command -v starship && eval "$(starship init zsh)"
+command -v fzf && eval "$(fzf --zsh)"
+command -v zoxide && eval "$(zoxide init zsh)"
 
 case $- in *i*)
   if [ -z "$TMUX" -a -z "$DISABLE_TMUX" ]; then exec tmux; fi;;
