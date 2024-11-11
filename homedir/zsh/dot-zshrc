@@ -1,7 +1,7 @@
 alias grep='grep --color=auto'
 alias ..='cd ..'
 alias ...='cd ../..'
-command -v lsd && alias ls='lsd'
+command -v lsd >> /dev/null && alias ls='lsd'
 alias l='ls -l'
 alias la='ls -a'
 alias ll='ls -la'
@@ -71,9 +71,10 @@ for dump in ~/.zcompdump(N.mh+24); do
 done
 compinit -C
 
-command -v starship && eval "$(starship init zsh)"
-command -v fzf && eval "$(fzf --zsh)"
-command -v zoxide && eval "$(zoxide init zsh)"
+# Do not output folder of command 
+command -v starship >> /dev/null && eval "$(starship init zsh)"
+command -v fzf >> /dev/null && eval "$(fzf --zsh)"
+command -v zoxide >> /dev/null && eval "$(zoxide init zsh)"
 
 case $- in *i*)
   if [ -z "$TMUX" ] && [ -z "$DISABLE_TMUX" ] && [ -n "$(command -v tmux)" ]; then
