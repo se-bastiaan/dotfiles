@@ -1,4 +1,5 @@
 # Terminal tooling
+brew 'stow'
 brew 'lsd'
 brew 'neovim'
 brew 'zinit'
