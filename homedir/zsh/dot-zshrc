@@ -1,5 +1,10 @@
 export LANG=en_US.UTF-8
 
+# If environment is $CODESPACES = true we need to source zprofile
+if [ -n "$CODESPACES" ]; then
+  source ~/.zprofile
+fi
+
 alias grep='grep --color=auto'
 alias ..='cd ..'
 alias ...='cd ../..'
