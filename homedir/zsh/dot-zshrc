@@ -74,11 +74,11 @@ done
 compinit -C
 
 # Do not output folder of command 
-command -v starship >> /dev/null && eval "$(starship init zsh)"
-command -v fzf >> /dev/null && eval "$(fzf --zsh)"
-command -v zoxide >> /dev/null && eval "$(zoxide init zsh)"
-command -v gh >> /dev/null && eval "$(gh completion -s zsh)"
-command -v gh >> /dev/null && gh copilot >> /dev/null && eval "$(gh copilot alias -- zsh)"
+command -v starship &> /dev/null && eval "$(starship init zsh)"
+command -v fzf &> /dev/null && eval "$(fzf --zsh)"
+command -v zoxide &> /dev/null && eval "$(zoxide init zsh)"
+command -v gh &> /dev/null && eval "$(gh completion -s zsh)"
+command -v gh &> /dev/null && gh copilot &> /dev/null && eval "$(gh copilot alias -- zsh)"
 
 case $- in *i*)
   if [ -z "$TMUX" ] && [ -z "$DISABLE_TMUX" ] && [ -n "$(command -v tmux)" ]; then
