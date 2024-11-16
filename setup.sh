@@ -55,8 +55,16 @@ if test ! $(which zsh); then
 else
     echo "Zsh is already installed"
 fi
-echo "Changing shell to Zsh"
-chsh -s $(which zsh)
+
+if [[ -z $CODESPACES ]]; then
+    if [[ $SHELL != $(which zsh) ]]; then
+        echo "Default shell is not Zsh"
+        echo "Changing shell to Zsh"
+        chsh -s $(which zsh)
+    else
+        echo "Default shell is Zsh"
+    fi
+fi
 
 if [[ $(uname) == "Darwin" ]]; then
     # Install Xcode Command Line Tools, if not installed
