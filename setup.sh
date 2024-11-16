@@ -47,6 +47,15 @@ brew doctor
 brew update
 echo "Homebrew installed"
 
+# Check if zsh is installed
+if test ! $(which zsh); then
+    echo "Zsh not installed"
+    echo "Installing Zsh"
+    brew install zsh
+else
+    echo "Zsh is already installed"
+fi
+
 if [[ $(uname) == "Darwin" ]]; then
     # Install Xcode Command Line Tools, if not installed
     xcode-select --install
