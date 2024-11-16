@@ -1,5 +1,23 @@
 #!/usr/bin/env bash
 
+FAST_MODE=false
+
+if [[ $CODESPACES == "true" ]]; then
+    FAST_MODE=true
+fi
+
+while getopts "f" opt; do
+    case ${opt} in
+        f )
+            FAST_MODE=true
+            ;;
+        \? )
+            echo "Usage: setup.sh [-f]"
+            exit 1
+            ;;
+    esac
+done
+
 clone_or_pull(){
   repo_url=$1
   directory=$2
@@ -52,16 +70,20 @@ fi
 echo "export PATH='/usr/local/bin:$PATH'\n" >> ~/.bashrc
 source ~/.bashrc
 
-# Install all packages from Brewfile
-echo "Starting to install packages from Brewfile"
-brew bundle --file=./homebrew/Brewfile
+# Only install brewfile and docker for non-codespaces
+if [[ -z $CODESPACES ]]; then
+    brew bundle --file=./homebrew/Brewfile
+fi
+brew bundle --file=./homebrew/Brewfile-terminal
 echo "Brewfile packages installed"
 
-echo "Symlinking Docker CLI plugins"
-mkdir -p ~/.docker/cli-plugins
-ln -sfn $(which docker-compose) ~/.docker/cli-plugins/docker-compose
-ln -sfn $(which docker-buildx) ~/.docker/cli-plugins/docker-buildx
-echo "Docker CLI plugins linked"
+if test $(which docker); then
+    echo "Symlinking Docker CLI plugins"
+    mkdir -p ~/.docker/cli-plugins
+    ln -sfn $(which docker-compose) ~/.docker/cli-plugins/docker-compose
+    ln -sfn $(which docker-buildx) ~/.docker/cli-plugins/docker-buildx
+    echo "Docker CLI plugins linked"
+fi
 
 # Install TPM
 echo "Installing Tmux Plugin Manager"
@@ -88,6 +110,11 @@ for app in ${apps[@]}; do
     stow -v -R -t "${HOME}" -d "homedir" --dotfiles $app 
 done
 echo "Stowing complete!"
+
+if [[ $FAST_MODE == true ]]; then
+    echo "Fast mode enabled, skipping question steps"
+    exit 0
+fi
 
 read -r -p "Do you want install apps using the Caskfile? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]

@@ -1,3 +1,5 @@
+export LANG=en_US.UTF-8
+
 alias grep='grep --color=auto'
 alias ..='cd ..'
 alias ...='cd ../..'

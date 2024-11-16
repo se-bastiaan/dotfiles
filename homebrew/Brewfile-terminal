@@ -1,0 +1,13 @@
+# Terminal tooling
+brew 'lsd'
+brew 'neovim'
+brew 'zinit'
+brew 'zsh-autosuggestions'
+brew 'zsh-you-should-use'
+brew 'zsh-syntax-highlighting'
+brew 'zsh-completions'
+brew 'fzf'
+brew 'zoxide'
+brew 'starship'
+brew 'adr-tools'
+brew 'tmux'
