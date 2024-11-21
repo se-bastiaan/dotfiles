@@ -5,6 +5,11 @@ if [ -n "$CODESPACES" ]; then
   source ~/.zprofile
 fi
 
+# If this is Jetbrain reading the environment, we don't want to run the rest of the file
+if [[ $INTELLIJ_ENVIRONMENT_READER ]]; then
+  return
+fi
+
 alias grep='grep --color=auto'
 alias ..='cd ..'
 alias ...='cd ../..'
