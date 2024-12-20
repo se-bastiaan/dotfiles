@@ -5,7 +5,6 @@ export GPG_TTY=$(tty)
 test -d /Applications/JetBrains\ Toolbox.app && export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
 test -d $HOME/.local && export PATH="$PATH:$HOME/.local/bin"
 test -d $HOME/.cargo && export PATH="$PATH:$HOME/.cargo/bin"
-test -d $HOME/.rye && source "$HOME/.rye/env"
 
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
