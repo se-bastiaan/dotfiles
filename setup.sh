@@ -193,20 +193,18 @@ then
     curl -sSL https://install.python-poetry.org | python3 -
     export PATH="/Users/sebastiaan/.local/bin:$PATH"
     poetry config virtualenvs.in-project true
-    poetry completions zsh > ~/.zfunc/_poetry
 
     echo "Poetry installed"
 fi
 
-read -r -p "Do you want to install Rye? [y/N] " response
+read -r -p "Do you want to install UV? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
 then
-    echo "Installing Rye"
+    echo "Installing UV"
 
-    curl -sSf https://rye.astral.sh/get | bash
-    rye self completion -s zsh > ~/.zfunc/_rye
+    curl -LsSf https://astral.sh/uv/install.sh | sh
 
-    echo "Rye installed"
+    echo "UV installed"
 fi
 
 read -r -p "Do you want to install Rust? [y/N] " response

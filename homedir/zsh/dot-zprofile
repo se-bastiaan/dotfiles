@@ -45,4 +45,11 @@ test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
 test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 test -d /opt/homebrew && eval "$(/opt/homebrew/bin/brew shellenv)"
 
-test -d pyenv && eval "$(pyenv init -)"
+command -v pyenv &> /dev/null && eval "$(pyenv init -)"
+
+command -v poetry &> /dev/null && poetry completions zsh > ~/.zfunc/_poetry
+command -v gh &> /dev/null && gh completion -s zsh > ~/.zfunc/_gh
+command -v gh &> /dev/null && gh copilot &> /dev/null && gh copilot alias -- zsh > ~/.zfunc/_ghcopilot
+command -v uv >> /dev/null && uv generate-shell-completion zsh > ~/.zfunc/_uv
+
+command -v uvx >> /dev/null && uvx --generate-shell-completion zsh > ~/.zfunc/_uvx
