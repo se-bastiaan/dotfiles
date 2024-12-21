@@ -172,19 +172,6 @@ then
     echo "nvm and latest Node LTS installed"
 fi
 
-read -r -p "Do you want to install the latest Python 3 version using pyenv? [y/N] " response
-if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
-then
-    echo "Installing latest Python 3 version using pyenv"
-
-    export PATH="$HOME/.pyenv/bin:$PATH"
-    eval "$(pyenv init -)"
-    pyenv install 3
-    pyenv global 3
-
-    echo "Latest Python 3 version installed"
-fi
-
 read -r -p "Do you want to install Poetry? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
 then
@@ -205,6 +192,16 @@ then
     curl -LsSf https://astral.sh/uv/install.sh | sh
 
     echo "UV installed"
+fi
+
+read -r -p "Do you want to install the latest Python 3 version using UV? [y/N] " response
+if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
+then
+    echo "Installing latest Python 3 version using UV"
+
+    uv python install --default --preview
+
+    echo "Latest Python 3 version installed"
 fi
 
 read -r -p "Do you want to install Rust? [y/N] " response
