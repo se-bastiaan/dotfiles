@@ -47,7 +47,6 @@ plugins=(
   "zsh-users/zsh-completions"
   "zsh-users/zsh-autosuggestions"
   "MichaelAquilina/zsh-you-should-use"
-  "Aloxaf/fzf-tab"
 )
 
 # Add fzf-tab if fzf is installed

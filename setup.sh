@@ -171,19 +171,6 @@ then
 
     echo "nvm and latest Node LTS installed"
 fi
-
-read -r -p "Do you want to install Poetry? [y/N] " response
-if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
-then
-    echo "Installing Poetry"
-
-    curl -sSL https://install.python-poetry.org | python3 -
-    export PATH="/Users/sebastiaan/.local/bin:$PATH"
-    poetry config virtualenvs.in-project true
-
-    echo "Poetry installed"
-fi
-
 read -r -p "Do you want to install UV? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
 then
@@ -202,6 +189,18 @@ then
     uv python install --default --preview
 
     echo "Latest Python 3 version installed"
+fi
+
+read -r -p "Do you want to install Poetry? [y/N] " response
+if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
+then
+    echo "Installing Poetry"
+
+    curl -sSL https://install.python-poetry.org | python3 -
+    export PATH="/Users/sebastiaan/.local/bin:$PATH"
+    poetry config virtualenvs.in-project true
+
+    echo "Poetry installed"
 fi
 
 read -r -p "Do you want to install Rust? [y/N] " response
