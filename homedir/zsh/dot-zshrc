@@ -86,11 +86,13 @@ compinit -C
 command -v starship &> /dev/null && eval "$(starship init zsh)"
 command -v fzf &> /dev/null && eval "$(fzf --zsh)"
 command -v zoxide &> /dev/null && eval "$(zoxide init zsh)"
+command -v direnv &> /dev/null && eval "$(direnv hook zsh)"
 
-# Check if $__CFBundleIdentifier environment variable contains the string 'jetbrains'
-if [ "${__CFBundleIdentifier#*jetbrains}" != "$__CFBundleIdentifier" ]; then
+# Check if $__CFBundleIdentifier environment variable contains the string 'jetbrains' or if TERM_PROGRAM is 'vscode'
+if [ "${__CFBundleIdentifier#*jetbrains}" != "$__CFBundleIdentifier" ] || [[ -n "$TERM_PROGRAM" && "$TERM_PROGRAM" == "vscode" ]]; then
   DISABLE_TMUX=true
 fi
+
 
 case $- in *i*)
   if [ -z "$TMUX" ] && [ -z "$DISABLE_TMUX" ] && [ -n "$(command -v tmux)" ]; then
