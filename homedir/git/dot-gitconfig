@@ -40,5 +40,3 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-[branch "main"]
-	pushRemote = invalidRemoteToPreventPushToMain
