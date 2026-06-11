@@ -5,9 +5,7 @@ cask 'discord'
 cask 'firefox'
 cask 'github'
 cask 'httpie-desktop'
-cask 'instantview'
 cask 'jetbrains-toolbox'
-cask 'nextcloud'
 cask 'pycharm'
 cask 'rancher'
 cask 'rectangle'
@@ -15,15 +13,8 @@ cask 'signal'
 cask 'spotify'
 cask 'the-unarchiver'
 cask 'visual-studio-code'
-cask 'whatsapp'
 cask 'gpg-suite-no-mail'
 cask 'iterm2'
-
-brew '1password-cli'
-
-# Quicklook
-cask 'qlmarkdown'
-cask 'quicklook-json'
 
 # Fonts
 cask 'font-lato'
@@ -32,11 +23,3 @@ cask 'font-jetbrains-mono-nerd-font'
 
 # Mac App Store
 mas 'Amphetamine', id: 93_984_704
-mas 'Outlook', id: 985_367_838
-mas 'WhatsApp', id: 310_633_997
-
-# Must have VSCode extensions
-vscode "GitHub.copilot"
-vscode "ms-python.python"
-vscode "dracula-theme.theme-dracula"
-vscode "ZainChen.json"
